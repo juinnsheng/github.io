@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Na Juinn Sheng — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090f;--bg2:#0d1018;--card:#111520;--card2:#161b28;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#dde2f0;--muted:#6b7294;--hint:#3d4260;
+  --green:#39d98a;--green2:rgba(57,217,138,0.12);--green3:rgba(57,217,138,0.06);
+  --blue:#5b8ef0;--blue2:rgba(91,142,240,0.12);
+  --purple:#a78bfa;--purple2:rgba(167,139,250,0.1);
+  --amber:#f59e0b;
+  --font-head:'Syne',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,5rem);height:64px;background:rgba(7,9,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font-head);font-weight:800;font-size:18px;color:#fff;letter-spacing:-0.5px;text-decoration:none}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.02em;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--green);color:#07090f;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;font-family:var(--font-head);transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+section{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,5rem)}
+.container{max-width:1100px;margin:0 auto}
+
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:100px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green3);border:1px solid rgba(57,217,138,0.2);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--green);font-family:var(--font-mono);margin-bottom:2rem}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+h1.hero-title{font-family:var(--font-head);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;color:#fff;margin-bottom:1.5rem}
+h1.hero-title .accent{color:var(--green)}
+h1.hero-title .accent2{color:var(--blue)}
+.hero-sub{font-size:clamp(15px,2vw,17px);color:var(--muted);max-width:540px;line-height:1.8;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--green);color:#07090f;padding:12px 28px;border-radius:8px;font-weight:700;font-family:var(--font-head);text-decoration:none;font-size:14px;transition:opacity 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{opacity:0.85}
+.btn-ghost{border:1px solid var(--border2);color:var(--text);padding:12px 28px;border-radius:8px;font-weight:500;text-decoration:none;font-size:14px;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px}
+
+.section-label{font-family:var(--font-mono);font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-1px;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:15px;max-width:560px;line-height:1.8}
+.section-head{margin-bottom:3.5rem}
+
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr;gap:2rem}}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:15px}
+.about-text p strong{color:var(--text)}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.edu-deg{font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;margin-bottom:2px}
+.edu-school{font-size:13px;color:var(--green);font-weight:500}
+.edu-meta{font-size:12px;color:var(--muted);margin-top:4px;display:flex;justify-content:space-between}
+.cgpa{font-family:var(--font-mono);color:var(--amber);font-size:12px}
+
+#skills{background:var(--bg)}
+.skills-grid{display:flex;flex-wrap:wrap;gap:10px}
+.skill-tag{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 14px;font-size:12px;font-family:var(--font-mono);color:var(--text);transition:all 0.2s;cursor:default}
+.skill-tag:hover{border-color:var(--green);color:var(--green);background:var(--green3)}
+.skill-tag.highlight{border-color:rgba(91,142,240,0.3);color:var(--blue);background:var(--blue2)}
+
+#projects{background:var(--bg2)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.25s;display:flex;flex-direction:column}
+.project-card:hover{border-color:var(--border2);transform:translateY(-2px);background:var(--card2)}
+.project-card.featured{border-color:rgba(57,217,138,0.25);background:linear-gradient(135deg,var(--card) 0%,rgba(57,217,138,0.04) 100%)}
+.project-tag{display:inline-block;font-size:10px;font-family:var(--font-mono);padding:3px 10px;border-radius:100px;margin-bottom:1rem}
+.tag-ai{background:var(--purple2);color:var(--purple)}
+.tag-ml{background:var(--blue2);color:var(--blue)}
+.tag-de{background:rgba(245,158,11,0.1);color:var(--amber)}
+.tag-rl{background:rgba(239,68,68,0.1);color:#f87171}
+.tag-featured{background:var(--green3);color:var(--green)}
+.project-title{font-family:var(--font-head);font-size:17px;font-weight:700;color:#fff;margin-bottom:0.6rem;line-height:1.3}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.8;flex:1;margin-bottom:1.25rem}
+.project-highlights{margin-bottom:1.25rem}
+.project-highlight{font-size:12px;color:var(--muted);padding:3px 0;display:flex;gap:8px;align-items:baseline}
+.project-highlight::before{content:"→";color:var(--green);flex-shrink:0;font-size:11px}
+.project-tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.tool-tag{font-size:10px;font-family:var(--font-mono);color:var(--hint);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:2px 8px}
+.project-links{display:flex;gap:10px;margin-top:auto}
+.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;text-decoration:none;padding:6px 14px;border-radius:6px;transition:all 0.2s}
+.proj-link-gh{border:1px solid var(--border2);color:var(--muted)}
+.proj-link-gh:hover{border-color:var(--text);color:var(--text)}
+.proj-link-demo{background:var(--green);color:#07090f;font-weight:600}
+.proj-link-demo:hover{opacity:0.85}
+
+#video{background:var(--bg)}
+.video-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;max-width:800px;margin:0 auto}
+.video-wrap iframe{width:100%;height:100%;border:none}
+
+#experience{background:var(--bg2)}
+.exp-list{display:flex;flex-direction:column;gap:1.5rem}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem}
+.exp-role{font-family:var(--font-head);font-size:16px;font-weight:700;color:#fff}
+.exp-company{font-size:13px;color:var(--green);font-weight:500;margin-top:2px}
+.exp-period{font-family:var(--font-mono);font-size:11px;color:var(--muted);background:var(--card2);padding:4px 10px;border-radius:6px;white-space:nowrap}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-points li{font-size:13px;color:var(--muted);padding-left:1.25rem;position:relative;line-height:1.7}
+.exp-points li::before{content:"◆";position:absolute;left:0;color:var(--green);font-size:7px;top:7px}
+
+#certs{background:var(--bg)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;align-items:center;gap:1rem}
+.cert-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cert-name{font-size:13px;font-weight:500;color:var(--text);line-height:1.4}
+.cert-org{font-size:11px;color:var(--muted);margin-top:2px}
+
+#contact{background:var(--bg2)}
+.contact-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;max-width:640px;margin:0 auto}
+.contact-links{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem}
+.contact-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--border2);color:var(--muted);transition:all 0.2s}
+.contact-link:hover{border-color:var(--green);color:var(--green)}
+
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);border-top:1px solid var(--border)}
+@media(max-width:600px){.nav-links{display:none}.hero-stats{gap:1.5rem}.stat-num{font-size:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">NJS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:juinnsheng.na@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-dot"></span>
+      Available for opportunities
+    </div>
+    <h1 class="hero-title">
+      Na Juinn<br/>
+      <span class="accent">Sheng</span><span class="accent2">.</span>
+    </h1>
+    <p class="hero-sub">
+      Master of Data Science (First Class Honours) · Building AI-powered systems that automate, accelerate, and amplify — from LLM pipelines to deep learning deployment.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        View Projects
+      </a>
+      <a href="https://github.com/juinnsheng" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3.94</div><div class="stat-label">CGPA · First Class</div></div>
+      <div><div class="stat-num">6+</div><div class="stat-label">AI/ML Projects</div></div>
+      <div><div class="stat-num">70%</div><div class="stat-label">Automation impact</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">// about me</div>
+      <h2 class="section-title">Data scientist<br/>by training, builder by nature.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Master of Data Science graduate from Universiti Malaya</strong> with a passion for turning complex problems into elegant, automated solutions. My background spans bioinformatics, order operations, and full-stack AI engineering.</p>
+        <p>I specialise in <strong>Generative AI, LLM pipelines, Retrieval-Augmented Generation</strong>, and production-grade ML deployment — building systems that genuinely reduce toil and improve decision-making.</p>
+        <p>Previously, I applied Python and Power Automate to streamline 250+ orders daily at a medical device manufacturer. Now I focus on building end-to-end AI platforms from research to deployment.</p>
+      </div>
+      <div>
+        <div class="edu-card">
+          <div class="edu-deg">Master of Data Science</div>
+          <div class="edu-school">Universiti Malaya · Kuala Lumpur</div>
+          <div class="edu-meta"><span>Oct 2023 – July 2025</span><span class="cgpa">CGPA 3.94 · First Class</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-deg">BSc (Hons) Medical Biotechnology</div>
+          <div class="edu-school">Sunway University · Petaling Jaya</div>
+          <div class="edu-meta"><span>2019 – 2022</span><span class="cgpa">CGPA 3.39 · Second Class Upper</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">// tech stack</div>
+      <h2 class="section-title">Tools & technologies</h2>
+      <p class="section-sub">Languages, frameworks, and platforms I build with.</p>
+    </div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:0.75rem;letter-spacing:0.1em">AI / ML</div>
+      <div class="skills-grid">
+        <span class="skill-tag highlight">LangChain</span><span class="skill-tag highlight">Generative AI / LLMs</span><span class="skill-tag highlight">RAG</span><span class="skill-tag highlight">PyTorch</span><span class="skill-tag highlight">TensorFlow</span><span class="skill-tag highlight">Scikit-Learn</span><span class="skill-tag highlight">Reinforcement Learning</span><span class="skill-tag highlight">Stable-Baselines3</span><span class="skill-tag highlight">HuggingFace</span><span class="skill-tag highlight">Mistral / OpenRouter</span><span class="skill-tag highlight">Pinecone</span>
+      </div>
+    </div>
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:0.75rem;letter-spacing:0.1em">Languages & Frameworks</div>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span><span class="skill-tag">R</span><span class="skill-tag">SQL</span><span class="skill-tag">Flask</span><span class="skill-tag">FastAPI</span><span class="skill-tag">React.js</span><span class="skill-tag">REST APIs</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:0.75rem;letter-spacing:0.1em">Data & Cloud</div>
+      <div class="skills-grid">
+        <span class="skill-tag">MongoDB</span><span class="skill-tag">Power BI</span><span class="skill-tag">Google Cloud (GCP)</span><span class="skill-tag">Azure</span><span class="skill-tag">Docker</span><span class="skill-tag">Kafka</span><span class="skill-tag">Apache Druid</span><span class="skill-tag">Grafana</span><span class="skill-tag">Excel / Power Query</span><span class="skill-tag">Power Automate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">// projects</div>
+      <h2 class="section-title">What I've built</h2>
+      <p class="section-sub">End-to-end AI systems, deployed applications, and research projects.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card featured">
+        <span class="project-tag tag-featured">Master Thesis</span>
+        <div class="project-title">Invasive Plant Species Classifier</div>
+        <div class="project-desc">Deep learning + bioinformatics pipeline to classify Malaysia's invasive plant species. Deployed as a full-stack web app with map pinning and SNP analysis.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">EfficientNetV2 & MobileNetV3 image classification models</div>
+          <div class="project-highlight">STACKS pipeline for SNP variant calling from genetic data</div>
+          <div class="project-highlight">FastAPI + React frontend deployed on Azure + MongoDB</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">TensorFlow</span><span class="tool-tag">FastAPI</span><span class="tool-tag">React</span><span class="tool-tag">Docker</span><span class="tool-tag">Azure</span><span class="tool-tag">MongoDB</span><span class="tool-tag">R</span></div>
+        <div class="project-links">
+          <a href="https://www.youtube.com/watch?v=Syms1R4O2m4" target="_blank" rel="noopener" class="proj-link proj-link-demo">&#9654; Watch Demo</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-ai">Generative AI</span>
+        <div class="project-title">MSL Intelligence Platform</div>
+        <div class="project-desc">Automated pipeline for Medical Scientific Liaisons — retrieve, deduplicate, and rank clinical studies from PubMed & ClinicalTrials.gov with AI-driven ranking.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">70% reduction in manual literature review time</div>
+          <div class="project-highlight">Structured evidence tables from unstructured abstracts</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">Flask</span><span class="tool-tag">Python</span><span class="tool-tag">PubMed API</span><span class="tool-tag">LLM</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/msl" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-ai">AI Platform</span>
+        <div class="project-title">AI-Powered Recruitment System</div>
+        <div class="project-desc">End-to-end recruitment platform with semantic candidate–job matching, resume parsing (50+ formats), and structured match scoring to cut HR screening time.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">99%+ extraction accuracy · Match scores 0–100</div>
+          <div class="project-highlight">Unstract LLMWhisperer + Mistral AI pipeline</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">Flask</span><span class="tool-tag">MongoDB</span><span class="tool-tag">Mistral</span><span class="tool-tag">REST API</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/AI-Powered-Recruitment-System" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-ai">RAG</span>
+        <div class="project-title">Mental Health Education Chatbot</div>
+        <div class="project-desc">RAG chatbot providing accurate mental health education grounded in verified academic sources via Pinecone vector search and Mistral LLM.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">End-to-end RAG: ingest → embed → index → search → generate</div>
+          <div class="project-highlight">Custom Flask UI/UX frontend</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">LangChain</span><span class="tool-tag">Pinecone</span><span class="tool-tag">Mistral</span><span class="tool-tag">Flask</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/abnpsychchatbot" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-rl">Reinforcement Learning</span>
+        <div class="project-title">AI Warehouse Path Optimizer</div>
+        <div class="project-desc">RL agent solving warehouse navigation as a Markov Decision Process using PPO with a 7-dimensional observation space and Manhattan distance heuristics.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">PPO agent via Stable-Baselines3 with fine-tuned hyperparameters</div>
+          <div class="project-highlight">React.js frontend + Flask API</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">Python</span><span class="tool-tag">PPO / RL</span><span class="tool-tag">React.js</span><span class="tool-tag">Flask</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/horsepicker" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-ml">Object Detection</span>
+        <div class="project-title">Real-Time Geese Counter</div>
+        <div class="project-desc">Lightweight real-time object detection using RT-DETRv2, exported to ONNX for efficient inference with a React web frontend.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">RT-DETRv2 → ONNX export pipeline</div>
+          <div class="project-highlight">OpenCV real-time video processing</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">PyTorch</span><span class="tool-tag">OpenCV</span><span class="tool-tag">React</span><span class="tool-tag">ONNX</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/unemploymentproject-geese" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-de">Data Engineering</span>
+        <div class="project-title">Real-Time Data Pipeline</div>
+        <div class="project-desc">End-to-end streaming analytics pipeline with ingestion, OLAP querying, and full observability stack including metrics and dashboards.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">Kafka ingestion → Apache Druid OLAP</div>
+          <div class="project-highlight">Prometheus metrics → Grafana dashboards</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">Kafka</span><span class="tool-tag">Druid</span><span class="tool-tag">Docker</span><span class="tool-tag">Prometheus</span><span class="tool-tag">Grafana</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/realtimedataengineeringanalytics" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+      <div class="project-card">
+        <span class="project-tag tag-ml">NLP</span>
+        <div class="project-title">Suicidal Ideation Detection</div>
+        <div class="project-desc">Deep learning classifier for suicidal ideation from Reddit & Twitter text, with LIME explainability analysis and hyperparameter tuning experiments.</div>
+        <div class="project-highlights">
+          <div class="project-highlight">Multi-split ratio experiments with DL models</div>
+          <div class="project-highlight">LIME model explainability integration</div>
+        </div>
+        <div class="project-tools"><span class="tool-tag">TensorFlow</span><span class="tool-tag">Python</span><span class="tool-tag">LIME</span></div>
+        <div class="project-links"><a href="https://github.com/juinnsheng/suicidalideationnlp" target="_blank" rel="noopener" class="proj-link proj-link-gh">GitHub &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="container">
+    <div class="section-head" style="text-align:center">
+      <div class="section-label">// thesis demo</div>
+      <h2 class="section-title">Invasive Plant Classifier — Product Demo</h2>
+      <p class="section-sub" style="margin:0 auto">Watch the full thesis project in action — classification, map pinning, and bioinformatic integration.</p>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/Syms1R4O2m4" allowfullscreen loading="lazy" title="Invasive Plant Species Classifier Demo"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">// experience</div>
+      <h2 class="section-title">Professional background</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-card">
+        <div class="exp-head">
+          <div><div class="exp-role">Order Management Specialist</div><div class="exp-company">Karex Berhad</div></div>
+          <span class="exp-period">Nov 2022 – Jun 2023</span>
+        </div>
+        <ul class="exp-points">
+          <li>Automated open-order tracking with Python & Power Query, reducing 250+ daily order monitoring to minutes from segmented sources</li>
+          <li>Maintained 85–90% documentation accuracy across cross-functional order fulfilment coordination</li>
+          <li>Pioneered Power Automate OCR pipeline to unify fragmented medical device specifications into a single master dataset</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-head">
+          <div><div class="exp-role">Membership Intern</div><div class="exp-company">Malaysian Nature Society</div></div>
+          <span class="exp-period">Dec 2021 – Mar 2022</span>
+        </div>
+        <ul class="exp-points">
+          <li>Developed educational content and presentations for conservation campaigns targeting national schools</li>
+          <li>Executed membership retention strategies via email campaigns and university outreach programs</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-head">
+          <div><div class="exp-role">Account Assistant</div><div class="exp-company">DNE Logistics Sdn Bhd</div></div>
+          <span class="exp-period">Jan 2018 – Apr 2018</span>
+        </div>
+        <ul class="exp-points">
+          <li>Processed complex billing documentation with 98% accuracy in invoice generation and tariff verification</li>
+          <li>Maintained organised financial records for audit preparation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">// certifications</div>
+      <h2 class="section-title">Credentials</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(3,101,253,0.15);font-size:20px">&#128202;</div>
+        <div><div class="cert-name">Certified Data Analyst</div><div class="cert-org">DataCamp</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(234,67,53,0.12);font-size:20px">&#9729;&#65039;</div>
+        <div><div class="cert-name">GCP Data Analytics Certificate</div><div class="cert-org">Google Cloud Platform</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-label" style="display:flex;justify-content:center">// get in touch</div>
+      <h2 class="section-title" style="margin-top:0.5rem">Let's work together.</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:0.5rem">Open to data science, AI engineering, and research roles. Based in Klang, Selangor — open to remote and relocation.</p>
+      <div class="contact-links">
+        <a href="mailto:juinnsheng.na@gmail.com" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          juinnsheng.na@gmail.com
+        </a>
+        <a href="https://github.com/juinnsheng" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          github.com/juinnsheng
+        </a>
+        <a href="https://www.youtube.com/watch?v=Syms1R4O2m4" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Demo Video
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Built with care · Na Juinn Sheng · 2025</footer>
+
+</body>
+</html>
